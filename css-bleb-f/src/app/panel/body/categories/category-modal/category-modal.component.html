@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Category</h4>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-6">
+      <label class="h5 text-red">Name</label>
+      <input class="form-control" (change)="isChanged=true" [(ngModel)]="category.name"  [popover]="errors('Name', 'name')" [isOpen]="errors('Name', 'name').length!==0" triggers="">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <label class="h5 text-red">Description</label>
+      <textarea class="form-control" rows="5" (change)="isChanged=true" [(ngModel)]="category.description" [popover]="errors('Description', 'description')" [isOpen]="errors('Description', 'description').length!==0" triggers=""></textarea>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-success" (click)="save()" [disabled]="!isChanged || allValid()==false">Save</button>
+  <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+</div>

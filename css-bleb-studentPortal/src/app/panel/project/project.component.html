@@ -1,0 +1,66 @@
+<h1 style="margin-top: 2%;">Project</h1>
+<div class="row">
+  <div class="col-md-4">
+    <label class="h5 text-red">Title</label>
+    <input class="form-control" (change)="isChanged=true" [(ngModel)]="project.title" [popover]="errors('Title', 'title')" [isOpen]="errors('Title', 'title').length!==0" triggers="">
+  </div>
+  <div class="col-md-4">
+      <label class="h5 text-red">Registration ID</label>
+      <input class="form-control" (change)="isChanged=true" [(ngModel)]="project.registration_id" [popover]="errors('Registration ID', 'registration_id')" [isOpen]="errors('Registration ID', 'registration_id').length!==0" triggers="">
+  </div>
+  <div class="col-md-4">
+    <label class="h5">Category</label>
+    <select class="form-control" (change)="isChanged=true" [(ngModel)]="project.category_id">
+      <option *ngFor="let category of categories;" value="{{ category.category_id }}">{{ category.name }}</option>
+    </select>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label class="h5">Photos</label>
+    <carousel class="text-center">
+    <slide>
+      <img src="{{ displayImg1 }}" alt="{{ project.title }}" style="display: block; max-width: 100%; min-width: 100%;">
+    </slide>
+    <slide>
+      <img src="{{ displayImg2 }}" alt="{{ project.title }}" style="display: block; max-width: 100%; min-width: 100%;">
+    </slide>
+    <slide>
+      <img src="{{ displayImg3 }}" alt="{{ project.title }}" style="display: block; max-width: 100%; min-width: 100%;">
+    </slide>
+    </carousel>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <label>Photo1</label>
+    <input type="file" single (change)="onPhoto1Selected($event)" style="display: none;" #photo1Input>
+    <button class="form-control btn btn-primary" (click)="photo1Input.click()">Pick File</button>
+  </div>
+  <div class="col-md-4">
+    <label>Photo2</label>
+    <input type="file" single (change)="onPhoto2Selected($event)" style="display: none;" #photo2Input>
+    <button class="form-control btn btn-primary" (click)="photo2Input.click()">Pick File</button>
+  </div>
+  <div class="col-md-4">
+    <label>Photo3</label>
+    <input type="file" single (change)="onPhoto3Selected($event)" style="display: none;" #photo3Input>
+    <button class="form-control btn btn-primary" (click)="photo3Input.click()">Pick File</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <label class="h5">Overview</label>
+    <textarea class="form-control" rows="5" (change)="isChanged=true" [(ngModel)]="project.overview" [popover]="errors('Overview', 'overview')" [isOpen]="errors('Overview', 'overview').length!==0" triggers=""></textarea>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom: 2%; margin-top: 2%;">
+  <div class="col-md-11">
+  </div>
+  <div class="col-md-1">
+    <button class="btn btn-success" (click)="save()" [disabled]="!isChanged || allValid()==false">Save</button>
+  </div>
+</div>
+      
+

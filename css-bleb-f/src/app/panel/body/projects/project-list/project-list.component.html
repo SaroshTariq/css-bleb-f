@@ -1,0 +1,80 @@
+<h1 style="margin-top: 2%;">Projects</h1>
+<div class="row" >
+  <div class="col-md-2">
+    <div class="btn-group" dropdown [autoClose]="false">
+      <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic">
+        Filter <span class="caret"></span>
+      </button>
+      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu col-sm-12"
+          role="menu" aria-labelledby="button-basic">
+        <li role="menuitem">
+          <accordion>
+            <accordion-group heading="Categories">
+              <label *ngFor="let category of categories;">
+                <input type="checkbox" value="{{category.category_id}}" (change)="onCategoryCheckBoxChange(category,$event)">{{category.name}}
+              </label>
+            </accordion-group>
+          </accordion>
+        </li>
+        <li role="menuitem">
+          <accordion>
+            <accordion-group heading="Beacons">
+              <label *ngFor="let beacon of beacons;">
+                <input type="checkbox" value="{{beacon.beacon_id}}" (change)="onBeaconCheckBoxChange(beacon,$event)">{{beacon.location}}
+              </label>
+            </accordion-group>
+          </accordion>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <input placeholder="Search..." class="form-control" [(ngModel)]="searchString">
+  </div>
+  <div class="col-md-4">
+    <select class="form-control col-md-4" [(ngModel)]="searchBy">
+      <option value="title">Title</option>
+      <option value="registration_id">Registration#</option>
+    </select>
+  </div>
+  <div class="col-md-1">
+    <button class="btn btn-danger" (click)="onDeleteClicked()" *ngIf="checkedProjects.length>0">Delete</button>
+  </div>
+  <div class="col-md-1">
+    <button class="btn btn-primary" (click)="openProjectModal(9000)">Add New</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-12">
+      <table class="table table-hover">
+        <caption>Projects with status <mark>unverified</mark> will not be shown in the app.</caption>
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col">Registration ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Students</th>
+            <th scope="col">Category</th>
+            <th scope="col">Room</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let project of projects | search:[searchString]:searchBy | search:[checkedCategories]:'category_id'  | search:[checkedBeacons]:'beacon_id'; let i=index;" class="pointer" >
+            <th>
+            <label>
+              <input type="checkbox" value="{{project.project_id}}" (change)="onProjectCheckBoxChange(project.project_id,$event)">
+            </label>
+            </th>
+            <th scope="row" (click)="openProjectModal(project.project_id)">{{ i+1 }}</th>
+            <td (click)="openProjectModal(project.project_id)">{{ project.registration_id }}<span class="badge badge-pill badge-danger" *ngIf="project.status=='unverified'">unverified</span></td>
+            <td (click)="openProjectModal(project.project_id)">{{ project.title }}</td>
+            <td (click)="openProjectModal(project.project_id)">{{ project.students }}</td>
+            <td (click)="openProjectModal(project.project_id)">{{ project.category }}</td>
+            <td (click)="openProjectModal(project.project_id)">{{ project.room }}</td>
+            </tr>
+          </tbody>
+      </table>
+  </div>   
+</div>

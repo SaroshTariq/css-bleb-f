@@ -1,0 +1,80 @@
+<h1 style="margin-top: 2%;">Student</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <label class="h5 text-red">First Name</label>
+      <input class="form-control" (change)="isChanged=true" [(ngModel)]="student.first_name" [popover]="errors('First Name', 'first_name')" [isOpen]="errors('First Name', 'first_name').length!==0" triggers="">
+    </div>
+    <div class="col-md-6">
+      <label class="h5 text-red">Last Name</label>
+      <input class="form-control" (change)="isChanged=true" [(ngModel)]="student.last_name" [popover]="errors('Last Name', 'last_name')" [isOpen]="errors('Last Name', 'last_name').length!==0" triggers="">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label class="h5">Display Picture</label>
+      <img src="{{ displayPicture }}" style="display: block; max-width: 100%; min-width: 100%;">
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12">
+          <label class="h5">Registration ID</label>
+          <input class="form-control"(change)="isChanged=true" [(ngModel)]="student.registration_id" [popover]="errors('Registration ID', 'registration_id')" [isOpen]="errors('Registration ID', 'registration_id').length!==0" triggers="">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label class="h5">Email</label>
+          <input class="form-control"(change)="isChanged=true" [(ngModel)]="student.email" [popover]="errors('Email', 'email')" [isOpen]="errors('Email', 'email').length!==0" triggers="">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label class="h5">Mobile</label>
+          <input class="form-control"(change)="isChanged=true" [(ngModel)]="student.mobile" [popover]="errors('Mobile', 'mobile')" [isOpen]="errors('Mobile', 'mobile').length!==0" triggers="">
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12 col-12 col-md-4 form-group">
+            <label class="h5">Date of Birth</label>
+            <input 
+                (change)="isChanged=true"
+                type="text"
+                class="form-control"
+                #dp="bsDatepicker"
+                bsDatepicker
+                [(ngModel)]="student.date_of_birth"
+                [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label class="h5">Address</label>
+          <textarea class="form-control"(change)="isChanged=true" [(ngModel)]="student.postal_address" [popover]="errors('Potal Address', 'postal_address')" [isOpen]="errors('Potal Address', 'postal_address').length!==0" triggers=""></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label>Display Picture</label>
+      <input type="file" single (change)="onDisplayPictureSelected($event)" style="display: none;" #photo1Input>
+      <button class="form-control btn btn-primary" (click)="photo1Input.click()">Pick File</button>
+    </div>
+  </div>
+
+     
+  <div class="row">
+    <div class="col-md-12">
+      <label class="h5">Overview</label>
+      <textarea class="form-control" rows="5" (change)="isChanged=true" [(ngModel)]="student.overview" [popover]="errors('Overview', 'overview')" [isOpen]="errors('Overview', 'overview').length!==0" triggers=""></textarea>
+    </div>
+  </div>
+  <hr>
+<div class="row" style="margin-bottom: 2%;">
+  <div class="col-md-11">
+
+  </div>
+  <div class="col-md-1">
+      <button type="button" class="btn btn-success" (click)="save()" [disabled]="!isChanged || allValid()==false">Save</button>
+  </div>
+</div>

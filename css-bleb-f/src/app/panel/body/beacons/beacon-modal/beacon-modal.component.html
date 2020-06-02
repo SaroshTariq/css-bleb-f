@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Beacon</h4>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-6">
+      <label class="h5 text-red">Location</label>
+      <input class="form-control" id="title" (change)="isChanged=true" [(ngModel)]="beacon.location" [popover]="errors('Location', 'location')" [isOpen]="errors('Location', 'location').length!==0" triggers="">
+    </div>
+    <div class="col-md-6">
+      <label class="h5 text-red">Status</label>
+      <select class="form-control" (change)="isChanged=true" [(ngModel)]="beacon.status">
+        <option value="active">Active</option>
+        <option value="unactive">Unactive</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+        <label class="h5 text-red">UUID</label>
+        <input class="form-control" id="title" (change)="isChanged=true" [(ngModel)]="beacon.uuid" [popover]="errors('UUID', 'uuid')" [isOpen]="errors('UUID', 'uuid').length!==0" triggers="">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label class="h5 text-red">Major_id</label>
+        <input class="form-control" id="title" (change)="isChanged=true" [(ngModel)]="beacon.major_id" [popover]="errors('Major_id', 'major_id')" [isOpen]="errors('Major_id', 'major_id').length!==0" triggers="">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+          <label class="h5 text-red">Minor_id</label>
+          <input class="form-control" id="title" (change)="isChanged=true" [(ngModel)]="beacon.minor_id" [popover]="errors('Minor_id', 'minor_id')" [isOpen]="errors('Minor_id', 'minor_id').length!==0" triggers="">
+      </div>
+    </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-success" (click)="save()" [disabled]="!isChanged || allValid()==false">Save</button>
+  <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+</div>

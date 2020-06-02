@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/mapboxWhite"
+    android:descendantFocusability="blocksDescendants"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+
+    <ImageView
+        android:id="@+id/iv_dp"
+        android:layout_width="60dp"
+        android:layout_height="75dp"
+        android:layout_weight="1"
+        android:background="@drawable/circle"
+        app:srcCompat="@drawable/ic_traffic" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:background="@android:color/transparent"
+        android:minWidth="200dp"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_semibold"
+            android:maxLength="35"
+            android:maxLines="1"
+            android:text="Sarosh Tariq"
+            android:textColor="@android:color/background_dark"
+            android:textIsSelectable="false"
+            android:textSize="18sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_regular"
+            android:text="saroshtariq77@gmail.com" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/background_rounded_pill"
+        android:backgroundTint="@color/colorPrimary"
+        android:fontFamily="@font/raleway_semibold"
+        android:text="View" />
+
+
+</LinearLayout>

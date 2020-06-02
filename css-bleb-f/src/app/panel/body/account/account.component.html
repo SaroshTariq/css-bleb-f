@@ -1,0 +1,67 @@
+<h1 style="margin-top: 2%;">Account</h1>
+<h2 style="margin-top: 2%;">Basics</h2>
+<div class="row">
+  <div class="col-md-4">
+    <label class="h5 text-red">First Name</label>
+    <input class="form-control" (change)="basicsIsChanged=true" [(ngModel)]="admin.first_name" [popover]="errors('First Name', 'first_name')" [isOpen]="errors('First Name', 'first_name').length!==0" triggers="">
+  </div>
+  <div class="col-md-4">
+    <label class="h5 text-red">Last Name</label>
+    <input class="form-control" (change)="basicsIsChanged=true" [(ngModel)]="admin.last_name" [popover]="errors('LastName', 'last_name')" [isOpen]="errors('LastName', 'last_name').length!==0" triggers="">
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <label class="h5 text-red">Email</label>
+    <input class="form-control" (change)="basicsIsChanged=true" [(ngModel)]="admin.email" [popover]="errors('Email', 'email')" [isOpen]="errors('Email', 'email').length!==0" triggers="">
+  </div>
+  <div class="col-md-4">
+    <label class="h5 text-red">Mobile</label>
+    <input class="form-control" (change)="basicsIsChanged=true" [(ngModel)]="admin.mobile" [popover]="errors('Mobile', 'mobile')" [isOpen]="errors('Mobile', 'mobile').length!==0" triggers="">
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-4 col-md-4 form-group">
+    <label class="h5">Date of Birth</label>
+    <input type="text"
+          class="form-control"
+          #dp="bsDatepicker"
+          bsDatepicker
+          [(ngModel)]="admin.date_of_birth"
+          [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }">
+  </div>
+</div>  
+<div class="row">
+  <div class="col-md-8">
+    <label class="h5 text-red">Address</label>
+    <textarea class="form-control" (change)="basicsIsChanged=true" rows="2" [(ngModel)]="admin.postal_address" [popover]="errors('Postal Address', 'postal_address')" [isOpen]="errors('Postal Address', 'postal_address').length!==0" triggers=""></textarea>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10">
+  </div>
+  <div class="col-md-2">
+    <br> 
+    <button class="btn btn-success" (click)="save('basics')" [disabled]="basicsValid()==false || !basicsIsChanged">Save</button>
+  </div>
+</div>
+<hr>
+<h2 style="margin-top: 2%;">Security</h2>
+<div class="row">
+  <div class="col-md-4">
+    <label class="h5 text-red">Old Password</label>
+    <input class="form-control" (change)="securityIsChanged=true" [(ngModel)]="admin.oldPassword" [popover]="errors('Old Password', 'oldPassword')" [isOpen]="errors('Old Password', 'oldPassword').length!==0" triggers="">
+  </div>
+  <div class="col-md-4">
+    <label class="h5 text-red">New Password</label>
+    <input class="form-control" (change)="securityIsChanged=true" [(ngModel)]="admin.newPassword" [popover]="errors('New Password', 'newPassword')" [isOpen]="errors('New Password', 'newPassword').length!==0" triggers="">
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10">
+  </div>
+  <div class="col-md-2">
+    <br> 
+    <button class="btn btn-success" (click)="save('basics')" [disabled]="basicsValid()==false || !basicsIsChanged">Save</button>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<h1 style="margin-top: 2%;"> Beacons </h1>
+<div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-3">
+      <input placeholder="Search..." class="form-control" [(ngModel)]="searchString">
+    </div>
+    <div class="col-md-4">
+      <select class = "form-control col-md-4" [(ngModel)] = "searchBy">
+          <option value="location">Location</option>
+          <option value="major_id">Major_id</option>
+          <option value="minor_id">Minor_id</option>
+          <option value="uuid">UUID</option>
+      </select>
+    </div>
+    <div class = "col-md-1">
+      <button class="btn btn-danger" (click) = "onDeleteClicked()" *ngIf = "checkedBeacons.length>0"> Delete </button>
+    </div>
+    <div class="col-md-1">
+      <button class="btn btn-primary" (click) = "openBeaconModal(2000)">Add new </button>
+    </div>
+  </div>
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover pointer">
+        <caption>Apps will not repond to beacons with status <mark>unactive</mark>.</caption>
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">#</th>
+          <th scope="col">Location</th>
+          <th scope="col">UUID</th>
+          <th scope="col">Major_id</th>
+          <th scope="col">Minor_id</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let beacon of beacons | search:[searchString]:searchBy; let i=index">
+          <th>
+            <label>
+              <input type = "checkbox" value = "{{beacon.beacon_id}}" (change) = "onBeaconCheckedBoxChange(beacon.beacon_id, $event)" >
+            </label>
+          </th>
+          <th scope="row">{{i+1}}</th>
+          <td (click) = "openBeaconModal(beacon.beacon_id)">{{beacon.location}}<span class = "badge badge-pill badge-danger" *ngIf = "beacon.status == 'unactive'">unactive</span></td>
+          <td (click) = "openBeaconModal(beacon.beacon_id)">{{beacon.uuid}}</td>
+          <td (click) = "openBeaconModal(beacon.beacon_id)">{{beacon.major_id}}</td>
+          <td (click) = "openBeaconModal(beacon.beacon_id)">{{beacon.minor_id}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

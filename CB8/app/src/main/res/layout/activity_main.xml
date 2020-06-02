@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mapboxWhite"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/tv_beaconstatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_light"
+        android:gravity="center_vertical|center_horizontal"
+        android:minHeight="50dp"
+        android:text="Searching for nearby beacons...."
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+
+    <!-- include main content -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@color/mapboxWhite"
+        android:orientation="horizontal">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/anim_searching"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_gravity="center_vertical"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="radar.json"
+            app:lottie_loop="true" />
+
+        <com.sdsmdg.harjot.vectormaster.VectorMasterView
+            android:id="@+id/vmv_dept_map"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_gravity="center"
+            app:vector_src="@drawable/ic_cs_dept_map8" />
+
+    </RelativeLayout>
+
+    <!-- include bottom sheet -->
+    <include layout="@layout/layout_bottomsheet_location" />
+</android.support.design.widget.CoordinatorLayout>

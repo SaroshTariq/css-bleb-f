@@ -1,0 +1,54 @@
+<h1 style="margin-top: 2%;">Students</h1>
+<div class="row" >
+  <div class="col-md-2">
+    
+  </div>
+  <div class="col-md-4">
+    <input placeholder="Search..." class="form-control" [(ngModel)]="searchString">
+  </div>
+  <div class="col-md-4">
+    <select class="form-control col-md-4" [(ngModel)]="searchBy">
+      <option value="first_name">First Name</option>
+      <option value="last_name">Last Name</option>
+      <option value="registration_id">Registration#</option>
+      <option value="project">Project</option>
+    </select>
+  </div>
+  <div class="col-md-1">
+    <button class="btn btn-danger" (click)="onDeleteClicked()" *ngIf="checkedStudents.length>0">Delete</button>
+  </div>
+  <div class="col-md-1">
+    <button class="btn btn-primary" (click)="openStudentModal(8000)">Add New</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-12 card">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col">Registration ID</th>
+            <th scope="col">Fist Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Project</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of students | search:[searchString]:searchBy; let i=index;" class="pointer">
+            <th>
+            <label>
+              <input type="checkbox" value="{{student.student_id}}" (change)="onStudentCheckBoxChange(student.student_id,$event)">
+            </label>
+            </th>
+            <th scope="row" (click)="openStudentModal(student.student_id)">{{ i+1 }}</th>
+            <td (click)="openStudentModal(student.student_id)">{{ student.registration_id }}</td>
+            <td (click)="openStudentModal(student.student_id)">{{ student.first_name }}</td>
+            <td (click)="openStudentModal(student.student_id)">{{ student.last_name }}</td>
+            <td (click)="openStudentModal(student.student_id)"><span *ngIf="student.project_id!=9000">{{ student.project }}</span><span *ngIf="student.project_id==9000" class="text-muted">None</span></td>
+            </tr>
+          </tbody>
+      </table>
+  </div>   
+</div>
